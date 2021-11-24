@@ -64,6 +64,7 @@ batch_size_train = 22
 batch_size_val = 1
 train_num = 0
 val_num = 0
+epoch_resume = 0
 
 tra_img_name_list = glob.glob(data_dir + tra_image_dir + '*' + image_ext)
 
@@ -115,15 +116,15 @@ ite_num = 0
 running_loss = 0.0
 running_tar_loss = 0.0
 ite_num4val = 0
-save_frq = 10 # save the model every 2000 iterations
+save_frq = 100 # save the model every 2000 iterations
 
-# checkpoint = torch.load(model_dir + model_name+".pth")
-# model.load_state_dict(checkpoint['model_state_dict'])
-# optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-# epoch = checkpoint['epoch']
+checkpoint = torch.load(model_dir + model_name+".pth")
+model.load_state_dict(checkpoint['model_state_dict'])
+optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+epoch_resume = checkpoint['epoch']
+ite_num = checkpoint['iteration_number']
 
-
-for epoch in range(0, epoch_num):
+for epoch in range(epoch_resume, epoch_num):
     net.train()
 
     for i, data in enumerate(salobj_dataloader):
