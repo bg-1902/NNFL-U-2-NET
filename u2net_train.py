@@ -115,7 +115,13 @@ ite_num = 0
 running_loss = 0.0
 running_tar_loss = 0.0
 ite_num4val = 0
-save_frq = 500 # save the model every 2000 iterations
+save_frq = 10 # save the model every 2000 iterations
+
+# checkpoint = torch.load(model_dir + model_name+".pth")
+# model.load_state_dict(checkpoint['model_state_dict'])
+# optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+# epoch = checkpoint['epoch']
+# loss = checkpoint['loss']
 
 for epoch in range(0, epoch_num):
     net.train()
@@ -158,7 +164,16 @@ for epoch in range(0, epoch_num):
 
         if ite_num % save_frq == 0:
 
-            torch.save(net.state_dict(), model_dir + model_name+"_bce_itr_%d_train_%3f_tar_%3f.pth" % (ite_num, running_loss / ite_num4val, running_tar_loss / ite_num4val))
+            #torch.save(net.state_dict(), model_dir + model_name+"_bce_itr_%d_train_%3f_tar_%3f.pth" % (ite_num, running_loss / ite_num4val, running_tar_loss / ite_num4val))
+            torch.save({
+                'epoch': epoch;
+                'iteration_number': ite_num,
+                'ite_num4val' : ite_num4val,
+                'model_state_dict': net.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'loss': loss,
+                'loss2' : loss2,
+            }, model_dir + model_name+".pth")
             running_loss = 0.0
             running_tar_loss = 0.0
             net.train()  # resume train
