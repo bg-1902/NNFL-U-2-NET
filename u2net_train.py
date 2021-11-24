@@ -59,7 +59,7 @@ label_ext = '.png'
 model_dir = os.path.join('/content/gdrive/MyDrive/G22/', 'saved_models', model_name + os.sep)
 
 
-epoch_num = 20
+epoch_num = 1000
 batch_size_train = 22
 batch_size_val = 1
 train_num = 0
