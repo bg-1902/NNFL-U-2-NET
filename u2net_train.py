@@ -59,8 +59,8 @@ label_ext = '.png'
 model_dir = os.path.join('/content/gdrive/MyDrive/G22/', 'saved_models', model_name + os.sep)
 
 
-epoch_num = 5
-batch_size_train = 16
+epoch_num = 20
+batch_size_train = 18
 batch_size_val = 1
 train_num = 0
 val_num = 0
@@ -115,7 +115,7 @@ ite_num = 0
 running_loss = 0.0
 running_tar_loss = 0.0
 ite_num4val = 0
-save_frq = 20 # save the model every 2000 iterations
+save_frq = 1000 # save the model every 2000 iterations
 
 for epoch in range(0, epoch_num):
     net.train()
