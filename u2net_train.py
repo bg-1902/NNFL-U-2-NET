@@ -57,8 +57,8 @@ label_ext = '.png'
 
 model_dir = os.path.join(os.getcwd(), 'saved_models', model_name + os.sep)
 
-epoch_num = 100
-batch_size_train = 12
+epoch_num = 5
+batch_size_train = 16
 batch_size_val = 1
 train_num = 0
 val_num = 0
