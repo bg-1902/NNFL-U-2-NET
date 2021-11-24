@@ -119,7 +119,7 @@ ite_num4val = 0
 save_frq = 100 # save the model every 2000 iterations
 
 checkpoint = torch.load(model_dir + model_name+".pth")
-model.load_state_dict(checkpoint['model_state_dict'])
+net.load_state_dict(checkpoint['model_state_dict'])
 optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 epoch_resume = checkpoint['epoch']
 ite_num = checkpoint['iteration_number']
