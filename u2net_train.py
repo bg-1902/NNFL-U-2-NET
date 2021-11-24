@@ -60,7 +60,7 @@ model_dir = os.path.join('/content/gdrive/MyDrive/G22/', 'saved_models', model_n
 
 
 epoch_num = 20
-batch_size_train = 18
+batch_size_train = 21
 batch_size_val = 1
 train_num = 0
 val_num = 0
