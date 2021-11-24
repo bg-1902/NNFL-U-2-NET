@@ -166,7 +166,7 @@ for epoch in range(0, epoch_num):
 
             #torch.save(net.state_dict(), model_dir + model_name+"_bce_itr_%d_train_%3f_tar_%3f.pth" % (ite_num, running_loss / ite_num4val, running_tar_loss / ite_num4val))
             torch.save({
-                'epoch': epoch;
+                'epoch': epoch,
                 'iteration_number': ite_num,
                 'ite_num4val' : ite_num4val,
                 'model_state_dict': net.state_dict(),
