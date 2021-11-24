@@ -55,7 +55,9 @@ tra_label_dir = os.path.join('DUTS', 'DUTS-TR', 'DUTS-TR-Mask' + os.sep)
 image_ext = '.jpg'
 label_ext = '.png'
 
-model_dir = os.path.join(os.getcwd(), 'saved_models', model_name + os.sep)
+#model_dir = os.path.join(os.getcwd(), 'saved_models', model_name + os.sep)
+model_dir = os.path.join('/content/gdrive/MyDrive/G22/', 'saved_models', model_name + os.sep)
+
 
 epoch_num = 5
 batch_size_train = 16
