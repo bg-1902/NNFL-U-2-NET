@@ -121,7 +121,7 @@ save_frq = 10 # save the model every 2000 iterations
 # model.load_state_dict(checkpoint['model_state_dict'])
 # optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 # epoch = checkpoint['epoch']
-# loss = checkpoint['loss']
+
 
 for epoch in range(0, epoch_num):
     net.train()
@@ -171,8 +171,8 @@ for epoch in range(0, epoch_num):
                 'ite_num4val' : ite_num4val,
                 'model_state_dict': net.state_dict(),
                 'optimizer_state_dict': optimizer.state_dict(),
-                'loss': loss,
-                'loss2' : loss2,
+                'running_loss': running_loss,
+                'running_tar_loss' : running_tar_loss,
             }, model_dir + model_name+".pth")
             running_loss = 0.0
             running_tar_loss = 0.0
