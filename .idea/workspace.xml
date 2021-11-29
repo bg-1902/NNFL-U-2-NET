@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a46e637f-e194-4ba0-b761-6d87f5fad3ff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/NNFL-U-2-NET.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NNFL-U-2-NET.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/u2net_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/u2net_train.py" afterDir="false" />
     </list>

@@ -165,7 +165,7 @@ for epoch in range(epoch_resume, epoch_num):
         del d0, d1, d2, d3, d4, d5, d6, loss2, loss
 
         print("[epoch: %3d/%3d, batch: %5d/%5d, ite: %d] train loss: %3f, tar: %3f, t_l_size: %d" % (
-        epoch + 1, epoch_num, (i + 1) * batch_size_train, train_num, ite_num, running_loss / ite_num4val, running_tar_loss / ite_num4val, train_loss.__sizeof__()))
+        epoch + 1, epoch_num, (i + 1) * batch_size_train, train_num, ite_num, running_loss / ite_num4val, running_tar_loss / ite_num4val, len(train_loss))
 
 
 
