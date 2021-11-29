@@ -118,11 +118,15 @@ running_tar_loss = 0.0
 ite_num4val = 0
 save_frq = 40 # save the model every 2000 iterations
 
-checkpoint = torch.load(model_dir + model_name+".pth")
-net.load_state_dict(checkpoint['model_state_dict'])
-optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-epoch_resume = checkpoint['epoch']
-ite_num = checkpoint['iteration_number']
+try:
+    checkpoint = torch.load(model_dir + model_name+".pth")
+    net.load_state_dict(checkpoint['model_state_dict'])
+    optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+    epoch_resume = checkpoint['epoch']
+    ite_num = checkpoint['iteration_number']
+    train_loss = checkpoint['train_loss']
+except:
+    train_loss = [];
 
 for epoch in range(epoch_resume, epoch_num):
     net.train()
@@ -163,20 +167,24 @@ for epoch in range(epoch_resume, epoch_num):
         print("[epoch: %3d/%3d, batch: %5d/%5d, ite: %d] train loss: %3f, tar: %3f " % (
         epoch + 1, epoch_num, (i + 1) * batch_size_train, train_num, ite_num, running_loss / ite_num4val, running_tar_loss / ite_num4val))
 
-        if ite_num % save_frq == 0:
 
-            #torch.save(net.state_dict(), model_dir + model_name+"_bce_itr_%d_train_%3f_tar_%3f.pth" % (ite_num, running_loss / ite_num4val, running_tar_loss / ite_num4val))
-            torch.save({
-                'epoch': epoch,
-                'iteration_number': ite_num,
-                'ite_num4val' : ite_num4val,
-                'model_state_dict': net.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
-                'running_loss': running_loss,
-                'running_tar_loss' : running_tar_loss,
-            }, model_dir + model_name+".pth")
-            running_loss = 0.0
-            running_tar_loss = 0.0
-            net.train()  # resume train
-            ite_num4val = 0
+
+        #torch.save(net.state_dict(), model_dir + model_name+"_bce_itr_%d_train_%3f_tar_%3f.pth" % (ite_num, running_loss / ite_num4val, running_tar_loss / ite_num4val))
+        curr_train_loss = running_loss
+        running_loss = 0.0
+        running_tar_loss = 0.0
+        net.train()  # resume train
+        ite_num4val = 0
+
+    train_loss.append(curr_train_loss)
+
+    torch.save({
+        'epoch': epoch+1,
+        'iteration_number': ite_num,
+        'ite_num4val' : ite_num4val,
+        'model_state_dict': net.state_dict(),
+        'optimizer_state_dict': optimizer.state_dict(),
+        'train_loss': train_loss,
+    }, model_dir + model_name+"_epoch_%d.pth" % (epoch+1))
+
 
