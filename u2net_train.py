@@ -126,7 +126,7 @@ try:
     ite_num = checkpoint['iteration_number']
     train_loss = checkpoint['train_loss']
 except:
-    train_loss = [];
+    train_loss = []
 
 for epoch in range(epoch_resume, epoch_num):
     net.train()
@@ -170,12 +170,7 @@ for epoch in range(epoch_resume, epoch_num):
 
 
         #torch.save(net.state_dict(), model_dir + model_name+"_bce_itr_%d_train_%3f_tar_%3f.pth" % (ite_num, running_loss / ite_num4val, running_tar_loss / ite_num4val))
-        curr_train_loss = running_loss
-        running_loss = 0.0
-        running_tar_loss = 0.0
-        net.train()  # resume train
-        ite_num4val = 0
-
+    curr_train_loss = running_loss/ ite_num4val
     train_loss.append(curr_train_loss)
 
     torch.save({
@@ -186,5 +181,9 @@ for epoch in range(epoch_resume, epoch_num):
         'optimizer_state_dict': optimizer.state_dict(),
         'train_loss': train_loss,
     }, model_dir + model_name+"_epoch_%d.pth" % (epoch+1))
+    running_loss = 0.0
+    running_tar_loss = 0.0
+    net.train()  # resume train
+    ite_num4val = 0
 
 
