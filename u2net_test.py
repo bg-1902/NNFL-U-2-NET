@@ -86,10 +86,12 @@ def main():
         net = U2NETP(3,1)
 
     if torch.cuda.is_available():
-        net.load_state_dict(torch.load(model_dir))
+        checkpoint = torch.load(model_dir);
+        net.load_state_dict(checkpoint['model_state_dict'])
         net.cuda()
     else:
-        net.load_state_dict(torch.load(model_dir, map_location='cpu'))
+        checkpoint = torch.load(model_dir, map_location='cpu')
+        net.load_state_dict(checkpoint['model_state_dict'])
     net.eval()
 
     # --------- 4. inference for each image ---------
