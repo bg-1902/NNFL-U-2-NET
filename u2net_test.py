@@ -21,6 +21,9 @@ from data_loader import SalObjDataset
 from model import U2NET # full size version 173.6 MB
 from model import U2NETP # small version u2net 4.7 MB
 
+import matplotlib.pyplot as plt
+
+
 # normalize the predicted SOD probability map
 def normPRED(d):
     ma = torch.max(d)
@@ -119,6 +122,12 @@ def main():
         save_output(img_name_list[i_test],pred,prediction_dir)
 
         del d1,d2,d3,d4,d5,d6,d7
-    print(checkpoint["train_loss"])
+
+    #print(checkpoint["train_loss"])
+    last_epoch = checkpoint["epoch"]
+    epoch_axis  = linspace(1, last_epoch, last_epoch)
+
+    plt.plot(epoch_axis, checkpoint["train_loss"])
+    plt.show()
 if __name__ == "__main__":
     main()
