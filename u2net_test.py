@@ -125,9 +125,12 @@ def main():
 
     #print(checkpoint["train_loss"])
     last_epoch = checkpoint["epoch"]
-    epoch_axis  = linspace(1, last_epoch, last_epoch)
+    epoch_axis  = np.linspace(1, last_epoch, last_epoch)
 
     plt.plot(epoch_axis, checkpoint["train_loss"])
+    plt.title('Epochwise Training loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
     plt.show()
 if __name__ == "__main__":
     main()
