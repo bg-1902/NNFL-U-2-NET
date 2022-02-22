@@ -183,7 +183,7 @@ for epoch in range(epoch_resume, epoch_num):
     }, model_dir + model_name+"_epoch_%d.pth" % (epoch+1))
     running_loss = 0.0
     running_tar_loss = 0.0
-    net.train()  # resume train
+    net.train()  # resume training
     ite_num4val = 0
 
 
